@@ -84,3 +84,64 @@ function partition(array, start, end) {
 }
 // console.log(quickSort([3, 4, 5, 2, 3, 4, 6, 8, 1, 9]));
 
+// const test = [21, 1, 26, 45, 29, 28, 2, 9, 16, 49, 39, 27, 43, 34, 46, 40];
+
+// console.log(mergeSort(test))
+
+// const test2 = [14, 17, 13, 15, 19, 10, 3, 16, 9, 12];
+
+// console.log(quickSort(test2))
+
+function bucketSort(array, low, high) {
+  const newArray = [];
+  for (let i = 0; i < high; i++) {
+    newArray[i] = "";
+  }
+  for (let i = 0; i < array.length; i++) {
+    newArray[array[i] - low] = array[i];
+  }
+  return newArray;
+}
+// const bucketData = [8, 1, 9, 5, 4, 10, 6, 2, 3, 7];
+// console.log(bucketSort(bucketData, 1, 10));
+
+function shuffle(array, counter = 0) {
+  while (counter < array.length) {
+    let randomIndex = Math.floor(Math.random() * array.length);
+    swap(array, counter, randomIndex);
+    counter++;
+    return shuffle(array, counter);
+  }
+  return array;
+}
+// let shuffleData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// console.log(shuffle(shuffleData));
+
+function sortBooks(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  const middle = Math.floor(arr.length / 2);
+  let left = arr.slice(0, middle);
+  let right = arr.slice(middle, arr.length);
+
+  left = sortBooks(left);
+  right = sortBooks(right);
+
+  return merge(left, right, arr);
+}
+const books = [
+  "To Kill a Mocking Bird",
+  "Hamlet",
+  "Ulysses",
+  "The Lord of the Rings",
+  "Of Mice and Men",
+  "The Catcher in the Rye",
+  "Odyssey",
+  "Harry Potter",
+  "Game of Thrones",
+  "War and Peace",
+  "Catch-22"
+];
+
+// console.log(sortBooks(books));
